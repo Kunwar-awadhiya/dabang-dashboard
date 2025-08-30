@@ -1,16 +1,20 @@
-import React from 'react';
-import Header from '../Header/Header';
-import Sidebar from '../Sidebar/Sidebar';
+import React from "react";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   return (
-    <div className="flex h-screen bg-gray-50">
+    <div className="h-screen bg-gray-50 flex flex-col md:flex-row">
+      {/* Sidebar - stays on left in desktop, hidden in mobile until toggled */}
       <Sidebar />
+
+      {/* Right Content Area */}
       <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Header always visible */}
         <Header />
-        <main className="flex-1 overflow-auto">
-          {children}
-        </main>
+
+        {/* Main content scrollable */}
+        <main className="flex-1 overflow-auto p-4 md:p-6">{children}</main>
       </div>
     </div>
   );
