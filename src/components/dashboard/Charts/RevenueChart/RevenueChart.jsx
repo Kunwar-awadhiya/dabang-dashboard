@@ -1,46 +1,45 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
-import { revenueData } from '../../../../data/chartData';
+import React from "react";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
+import { revenueData } from "../../../../data/chartData";
 
 const RevenueChart = () => {
   return (
     <>
-      <h3 className="text-lg font-bold text-gray-900 mb-6">Total Revenue</h3>
-      <div className="h-64">
+      {/* Title */}
+      <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-4">
+        Total Revenue
+      </h3>
+
+      {/* Chart */}
+      <div className="h-56 sm:h-64 md:h-72 lg:h-80">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={revenueData}>
-            <XAxis 
-              dataKey="day" 
-              axisLine={false} 
-              tickLine={false} 
-              tick={{ fontSize: 10 }} 
+          <BarChart data={revenueData} barCategoryGap="30%">
+            <XAxis
+              dataKey="day"
+              axisLine={false}
+              tickLine={false}
+              tick={{ fontSize: 11, fill: "#6b7280" }}
             />
-            <YAxis 
-              axisLine={false} 
-              tickLine={false} 
-              tick={{ fontSize: 10 }} 
+            <YAxis
+              axisLine={false}
+              tickLine={false}
+              tick={{ fontSize: 11, fill: "#6b7280" }}
             />
-            <Bar 
-              dataKey="online" 
-              fill="#3b82f6" 
-              radius={[4, 4, 0, 0]} 
-            />
-            <Bar 
-              dataKey="offline" 
-              fill="#10b981" 
-              radius={[4, 4, 0, 0]} 
-            />
+            <Bar dataKey="online" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="offline" fill="#10b981" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex items-center justify-center space-x-6 mt-4">
+
+      {/* Legend */}
+      <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-6 mt-4 space-y-2 sm:space-y-0">
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-          <span className="text-xs text-gray-600">Online Sales</span>
+          <span className="text-xs sm:text-sm text-gray-600">Online Sales</span>
         </div>
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-          <span className="text-xs text-gray-600">Offline Sales</span>
+          <span className="text-xs sm:text-sm text-gray-600">Offline Sales</span>
         </div>
       </div>
     </>
