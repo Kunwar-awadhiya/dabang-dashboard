@@ -8,7 +8,7 @@ export const dashboardMetrics = [
     change: '+8% from yesterday',
     changeType: 'positive',
     icon: TrendingUp,
-    bgColor: 'bg-pink-50',
+    bgColor: 'bg-pink-100',
     iconColor: 'bg-pink-500'
   },
   {
@@ -17,7 +17,7 @@ export const dashboardMetrics = [
     change: '+5% from yesterday',
     changeType: 'positive',
     icon: ShoppingBag,
-    bgColor: 'bg-orange-50',
+    bgColor: 'bg-orange-100',
     iconColor: 'bg-orange-500'
   },
   {
@@ -26,7 +26,7 @@ export const dashboardMetrics = [
     change: '+1.2% from yesterday',
     changeType: 'positive',
     icon: Package,
-    bgColor: 'bg-green-50',
+    bgColor: 'bg-green-100',
     iconColor: 'bg-green-500'
   },
   {
@@ -35,7 +35,7 @@ export const dashboardMetrics = [
     change: '0.5% from yesterday',
     changeType: 'positive',
     icon: Users,
-    bgColor: 'bg-purple-50',
+    bgColor: 'bg-purple-100',
     iconColor: 'bg-purple-500'
   }
 ];
