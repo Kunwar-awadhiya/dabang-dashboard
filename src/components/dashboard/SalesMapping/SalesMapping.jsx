@@ -38,7 +38,7 @@ const SalesMapping = () => {
   return (
     <>
       <h3 className="text-lg font-bold text-gray-900 mb-6">Sales Mapping by Country</h3>
-      <div className="h-64 relative bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
+      <div className="h-64 mt-8 relative bg-gray-50 rounded-lg flex items-center justify-center overflow-hidden">
         <img src="/images/world 1.png" alt="" />
       </div>
     </>

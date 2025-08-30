@@ -5,7 +5,7 @@ import { satisfactionData } from '../../../../data/chartData';
 const SatisfactionChart = () => {
   return (
     <>
-      <h3 className="text-lg font-bold text-gray-900 mb-6">Customer Satisfaction</h3>
+      <h3 className="text-lg font-bold text-gray-900 mb-19">Customer Satisfaction</h3>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={satisfactionData}>
@@ -18,7 +18,8 @@ const SatisfactionChart = () => {
             <YAxis 
               axisLine={false} 
               tickLine={false} 
-              tick={{ fontSize: 10 }} 
+              tick={{ fontSize: 10 }}
+              width={11} 
             />
             <Area 
               type="monotone" 
@@ -37,7 +38,7 @@ const SatisfactionChart = () => {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex items-center justify-between mt-4">
+      <div className="flex items-center justify-between mt-17">
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
           <span className="text-xs text-gray-600">Last Month</span>

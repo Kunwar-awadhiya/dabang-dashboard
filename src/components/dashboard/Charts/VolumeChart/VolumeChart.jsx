@@ -18,7 +18,8 @@ const VolumeChart = () => {
             <YAxis 
               axisLine={false} 
               tickLine={false} 
-              tick={{ fontSize: 10 }} 
+              tick={{ fontSize: 10 }}
+              width={25} 
             />
             <Bar 
               dataKey="volume" 
@@ -33,7 +34,7 @@ const VolumeChart = () => {
           </BarChart>
         </ResponsiveContainer>
       </div>
-      <div className="flex items-center justify-between mt-4">
+      <div className="flex items-center justify-between mt-12">
         <div className="flex items-center space-x-2">
           <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
           <span className="text-xs text-gray-600">Volume</span>
