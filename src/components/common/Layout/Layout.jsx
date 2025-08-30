@@ -4,17 +4,19 @@ import Sidebar from "../Sidebar/Sidebar";
 
 const Layout = ({ children }) => {
   return (
-    <div className="h-screen bg-gray-50 flex flex-col md:flex-row">
-      {/* Sidebar - stays on left in desktop, hidden in mobile until toggled */}
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* Sidebar - stays left on desktop, hidden on mobile if you add toggle later */}
       <Sidebar />
 
-      {/* Right Content Area */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      {/* Right content wrapper */}
+      <div className="flex-1 flex flex-col">
         {/* Header always visible */}
         <Header />
 
         {/* Main content scrollable */}
-        <main className="flex-1 overflow-auto p-4 md:p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
+          {children}
+        </main>
       </div>
     </div>
   );

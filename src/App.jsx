@@ -6,23 +6,72 @@ import Orders from './pages/Orders/Orders';
 import Products from './pages/Products/Products';
 import SalesReport from './pages/SalesReport/SalesReport';
 import Setting from './pages/Setting/Setting';
+import Login from './pages/Login'
 import './App.css';
+
+import { AuthProvider } from './contexts/AuthContext'
+import ProtectedRoute from './components/common/ProtectedRoute'
 
 function App() {
   return (
-    <Router>
-      <Layout>
+    <AuthProvider>
+      <Router>
         <Routes>
-          <Route path="/" element={<Dashboard/>}/>
-          <Route path="/dashboard" element={<Dashboard/>}/>
-          <Route path="/leaderboard" element={<Leaderboard/>}/>
-          <Route path="/orders" element={<Orders/>}/>
-          <Route path="/products" element={<Products/>}/>
-          <Route path="/sales-report" element={<SalesReport/>}/>
-          <Route path="/settings" element={<Setting/>}/>
+          <Route path="/login" element={<Login />} />
+
+          {/* Protected routes */}
+          <Route path="/" element={
+            <ProtectedRoute>
+              <Layout>
+                <Dashboard/>
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Layout>
+                <Dashboard/>
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/leaderboard" element={
+            <ProtectedRoute>
+              <Layout>
+                <Leaderboard/>
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/orders" element={
+            <ProtectedRoute>
+              <Layout>
+                <Orders/>
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/products" element={
+            <ProtectedRoute>
+              <Layout>
+                <Products/>
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/sales-report" element={
+            <ProtectedRoute>
+              <Layout>
+                <SalesReport/>
+              </Layout>
+            </ProtectedRoute>
+          } />
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <Layout>
+                <Setting/>
+              </Layout>
+            </ProtectedRoute>
+          } />
         </Routes>
-      </Layout>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 
