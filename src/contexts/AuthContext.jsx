@@ -1,49 +1,71 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext);
+export const AuthProvider = ({ children }) => {
+  // Logged in state
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    () => localStorage.getItem("isLoggedIn") === "true"
+  );
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    try {
-      const raw = localStorage.getItem("dv_user");
-      return raw ? JSON.parse(raw) : null;
-    } catch {
-      return null;
-    }
-  });
-  const [loading, setLoading] = useState(false);
+  const [currentUser, setCurrentUser] = useState(
+    () => JSON.parse(localStorage.getItem("currentUser")) || null
+  );
 
-  // fake login - frontend only
-  const login = async (email, password) => {
-    setLoading(true);
-    // simulate small delay
-    await new Promise((r) => setTimeout(r, 400));
+  // Signup function
+  const signup = ({ name, email, password }) => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (!email || !password) {
-      setLoading(false);
-      throw new Error("Please provide email and password");
+    // Check if email already exists
+    const existingUser = users.find((u) => u.email === email);
+    if (existingUser) {
+      throw new Error("User with this email already exists");
     }
 
-    // create a simple user object
-    const u = { email, name: email.split("@")[0] || "User" };
-    localStorage.setItem("dv_user", JSON.stringify(u));
-    setUser(u);
-    setLoading(false);
-    return u;
+    const newUser = {
+      id: Date.now(), // simple unique id
+      name,
+      email,
+      password,
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    return true;
   };
 
+  // Login function
+ 
+
+  const login = (email, password) => {
+  return new Promise((resolve, reject) => {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find(u => u.email === email && u.password === password);
+
+    if (!user) return reject(new Error("Invalid email or password"));
+
+    setIsLoggedIn(true);
+    setCurrentUser(user);
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    resolve(true);
+  });
+};
+
+
+  // Logout function
   const logout = () => {
-    localStorage.removeItem("dv_user");
-    setUser(null);
+    setIsLoggedIn(false);
+    setCurrentUser(null);
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("currentUser");
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, login, logout, loading, isAuthenticated: !!user }}
-    >
+    <AuthContext.Provider value={{ isLoggedIn, currentUser, login, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
+
+export const useAuth = () => useContext(AuthContext);
